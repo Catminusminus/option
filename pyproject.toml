@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "option"
+version = "0.0.1"
+description = "A simple Rust-like Option type for Python with Type Annotations"
+authors = ["Catminusminus <getomya@svk.jp>"]
+readme = "README.md"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.6.0"
+isort = "^5.10.1"
+mypy = "^0.971"
+flake8-bugbear = "^22.7.1"
+flake8 = "^5.0.4"
+pep8-naming = "^0.13.1"
+safety = "^2.1.1"
+flake8-comprehensions = "^3.10.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+
+[tool.isort]
+profile = "black"
+
+[tool.poe.tasks]
+test = "pytest --cov=option tests/"
+_format_black = "black ."
+_format_isort = "isort --profile black ."
+format = ["_format_isort", "_format_black"]
+_lint_black = "black --check ."
+_lint_isort = "isort --check-only --profile black ."
+_flake8 = "flake8 --filename=*.py option/"
+lint = ["_flake8", "_lint_black", "_lint_isort"]
+audit = "safety check"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
