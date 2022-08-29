@@ -1,10 +1,14 @@
 [tool.poetry]
-name = "option"
+name = "option-python"
 version = "0.0.1"
 description = "A simple Rust-like Option type for Python with Type Annotations"
 authors = ["Catminusminus <getomya@svk.jp>"]
 readme = "README.md"
+repository = "https://github.com/Catminusminus/option"
 license = "MIT"
+packages = [
+    { include = "option" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
