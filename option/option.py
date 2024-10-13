@@ -55,7 +55,7 @@ class Some(Generic[T]):
     def unwrap(self) -> T:
         return self._value
 
-    def unwrap_or(self, _: T) -> T:
+    def unwrap_or(self, _: object) -> T:
         return self._value
 
     def unwrap_or_else(self, _: Callable[[], T]) -> T:
@@ -87,20 +87,20 @@ class Nothing:
     def is_some(self) -> bool:
         return False
 
-    def is_some_and(self, f: Callable[[T], bool]) -> bool:
+    def is_some_and(self, f: Callable[[Any], bool]) -> bool:
         return False
 
     @property
     def value(self) -> None:
         return None
 
-    def map(self, _: Callable) -> "Nothing":
+    def map(self, _: Callable[[Any], U]) -> "Nothing":
         return self
 
-    def map_or(self, default: U, _: Callable) -> U:
+    def map_or(self, default: U, _: Callable[[Any], U]) -> U:
         return default
 
-    def map_or_else(self, default: Callable[[], U], _: Callable[[T], U]) -> U:
+    def map_or_else(self, default: Callable[[], U], _: Callable[[Any], U]) -> U:
         return default()
 
     def or_else(self, f: Callable[[], Some[T]]) -> Some[T]:
@@ -109,7 +109,7 @@ class Nothing:
     def unwrap(self) -> NoReturn:
         raise UnwrapError(self, "Called `Option.unwrap()` on an `Nothing` value")
 
-    def unwrap_or(self, default: T) -> T:
+    def unwrap_or(self, default: U) -> U:
         return default
 
     def unwrap_or_else(self, default: Callable[[], T]) -> T:

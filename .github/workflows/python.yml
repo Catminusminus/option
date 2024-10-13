@@ -21,6 +21,7 @@ jobs:
           poetry run flake8 --filename=*.py option/
           poetry run black --check .
           poetry run isort --check-only --profile black .
+          poetry run mypy option/
 
   pytest:
     runs-on: ubuntu-latest
