@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "option-python"
-version = "0.0.1"
+version = "0.0.2"
 description = "A simple Rust-like Option type for Python with Type Annotations"
 authors = ["Catminusminus <getomya@svk.jp>"]
 readme = "README.md"
